@@ -4,14 +4,13 @@ This second programming assignment will require you to write an R function that 
 Matrix inversion is usually a costly computation and there may be some benefit to caching the inverse of a matrix rather than compute it repeatedly The assignment is to write a pair of functions that cache the inverse of a matrix.
 # makeCacheMatrix function
 This function creates a special “matrix” object that can cache its inverse.
-R Code:
+```
 makeCacheMatrix <- function(x = matrix()) {
         ## functions to
         ##              1. set matrix
         ##              2. get matrix
         ##              3. set inverse
         ##              4. get inverse
-        
         inv = NULL
         set = function(y) {
                 # use `<<-` to assign a value to an object in an environment 
@@ -24,9 +23,10 @@ makeCacheMatrix <- function(x = matrix()) {
         getinv = function() inv
         list(set=set, get=get, setinv=setinv, getinv=getinv)
 }
+```
 # cacheSolve function
 This function computes the inverse of the special “matrix” returned by makeCacheMatrix above. If the inverse has already been calculated (and the matrix has not changed), then the cacheSolve should retrieve the inverse from the cache.
-R Code:
+```
 cacheSolve <- function(x, ...) {      
         inv = x$getinv()
         # if the inverse has already been calculated
@@ -35,14 +35,11 @@ cacheSolve <- function(x, ...) {
                 message("getting cached data")
                 return(inv)
         }
-        
         # else, calculates the inverse 
         mat.data = x$get()
         inv = solve(mat.data, ...)
-        
         # sets the value of the inverse in the cache
         x$setinv(inv)
-        
         return(inv)
 }
-
+```
